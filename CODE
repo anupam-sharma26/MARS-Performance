@@ -1,0 +1,57 @@
+Open Ads =
+CALCULATE(COUNT(Ads[AdID]), Ads[Status] = "Open")
+
+Closed Ads =
+CALCULATE(COUNT(Ads[AdID]), Ads[Status] = "Closed")
+
+Total Ads =
+COUNT(Ads[AdID])
+
+Total Reach =
+SUM(Ads[Reach])
+
+Total Amount =
+SUM(Ads[Amount])
+
+
+Ads by App =
+COUNT(Ads[AdID])
+
+Reach by App =
+SUM(Ads[Reach])
+
+Amount by App =
+SUM(Ads[Amount])
+
+
+
+Amount Closed =
+CALCULATE(SUM(Ads[Amount]), Ads[Status] = "Closed")
+
+Amount Open =
+CALCULATE(SUM(Ads[Amount]), Ads[Status] = "Open")
+
+
+
+Total Reach by Influencer =
+SUM(Ads[Reach])
+
+Influencer Rank =
+RANKX(
+    ALL(Ads[Influencer]),
+    [Total Reach by Influencer],
+    ,
+    DESC
+)
+
+
+
+Ads Count =
+COUNT(Ads[AdID])
+
+Closed Ads Over Time =
+CALCULATE(
+    COUNT(Ads[AdID]),
+    Ads[Status] = "Closed",
+    ALLEXCEPT(Ads, Ads[Closed Date])
+)
